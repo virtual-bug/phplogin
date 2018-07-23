@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2018 at 05:25 AM
+-- Generation Time: Jul 23, 2018 at 04:09 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `login`
+-- Database: `registration`
 --
 
 -- --------------------------------------------------------
@@ -29,23 +29,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `users` (
-  `UserId` int(12) NOT NULL,
-  `UserName` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserId`, `UserName`, `Password`) VALUES
-(1, 'admin', 'admin'),
-(10, 'ALI', 'ALI'),
-(11, 'me', '*C4653F86B760365DD6407B918A649979776A2E14'),
-(14, 'ahmed', '*02AB7B49592DA0744596438567B90424DBB8A163'),
-(15, 'Mostafa', '*01BDC27CBB37D71932C923DFDB3BB280D7A6418C'),
-(16, 'ahmed', 'adminahmed'),
-(17, 'ali', '*C5B77E25AD277F1AF90A234B80333343C8F9CB9A');
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'me', 'me@mostafa', 'look'),
+(2, 'metest', 'lookgo2000@outlook.com', '8c4291f6956da81515a5c0caec2976d0'),
+(3, 'mostafa', 'mostafaibrahem882@gmail.com', '1f65b44dc8f49103aa77e1bc49bd3c79'),
+(4, 'test1', 'test1@me.com', '5a105e8b9d40e1329780d62ea2265d8a');
 
 --
 -- Indexes for dumped tables
@@ -55,7 +53,7 @@ INSERT INTO `users` (`UserId`, `UserName`, `Password`) VALUES
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`UserId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -65,7 +63,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserId` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
