@@ -81,5 +81,50 @@ if (isset($_POST['login_user'])) {
   	}
   }
 }
+if (isset($_POST['new_project'])) {
+  // receive all input values from the form
+    
+  $proid = mysqli_real_escape_string($db, $_POST['proid']);
+  $proname = mysqli_real_escape_string($db, $_POST['proname']);
+  $details = mysqli_real_escape_string($db, $_POST['details']);
+  $time1 = mysqli_real_escape_string($db, $_POST['time1']);
+  $time2 = mysqli_real_escape_string($db, $_POST['time2']);
 
+  // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($proname)) { array_push($errors, "project name is required"); }
+  if (empty($details)) { array_push($errors, "details is required"); }
+//  if (empty($time1)) { array_push($errors, "start time is required"); }
+//  if (empty($time2)) { array_push($errors, " end time is required"); }
+//  
+//  if ($time1 >= $time2) {
+//	array_push($errors, "The time is not correct !");
+//  }
+
+  // first check the database to make sure 
+  // a user does not already exist with the same username and/or email
+  $project_check_query = "SELECT * FROM projects WHERE proname='$proname' LIMIT 1";
+  $result = mysqli_query($db, $project_check_query);
+  $project = mysqli_fetch_assoc($result);
+  
+  if ($project) { // if user exists
+    if ($project['proname'] == $proname) {
+      array_push($errors, "project already exists change the name");
+    }
+
+     
+  }
+
+  // Finally, add  pro if there are no errors in the form
+  if (count($errors) == 0) {
+  	//$password = md5($password_1);//encrypt the password before saving in the database
+
+  	$query = "INSERT INTO projects (proid, proname, details,startdate,enddate) 
+  			  VALUES('$proid','$proname', '$details', '$time1','$time2')";
+  	mysqli_query($db, $query);
+  	$_SESSION['username'] = $username;
+  	$_SESSION['success'] = "Yourproject added ";
+  	header('location: index.php');
+  }
+}
 ?>
